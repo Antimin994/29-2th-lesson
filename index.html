@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .cart {
+      margin: 40px;
+      border: 1px solid #ccc;
+      border-radius: 15px;
+      padding: 30px;
+      background: lightcyan;
+      max-width: 400px;
+      background: url(https://i.pinimg.com/originals/8e/3a/f6/8e3af65af9f79b782ae7d72be5e6371b.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .cart_numb_item {
+      width: 22px;
+      height: 28px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cart">
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <input class="cart_numb_item" autofocus maxlength="1">
+    <input class="cart_numb_item" maxlength="1">
+    <input class="cart_numb_item" maxlength="1">
+    <input class="cart_numb_item" maxlength="1">
+    <input class="cart_numb_item" maxlength="1">
+    <input class="cart_numb_item" maxlength="1">
+    <input class="cart_numb_item" maxlength="1">
+    <input class="cart_numb_item" maxlength="1">
+    <input class="cart_numb_item" maxlength="1">
+    <input class="cart_numb_item" maxlength="1">
+    <input class="cart_numb_item" maxlength="1">
+    <input class="cart_numb_item" maxlength="1">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+  </div>
+
+
+
+  <script>
+    let inputList = document.querySelectorAll('input');
+    let str = '';
+
+    if (navigator.cookieEnabled === false) {
+      alert("Cookies отключены!");
+    }
+    console.log(navigator.cookieEnabled);
+    if (!document.cookie) {
+      document.cookie = "card=15615816816";
+    }
+
+    for (let i = 0; i < inputList.length; i++) {
+
+      inputList[i].addEventListener('keyup', function (event) {
+        let key = event.which;
+        console.log(key);
+        if ((key < 48 || key > 57) && key != 8) {
+          event.target.value = "";
+          return;
+        }
+        key == 8 ? this.previousElementSibling.focus() : this.nextElementSibling.focus();
+
+        str += event.target.value;
+        console.log(str);
+        console.log(str.length);
+        if (str.length == 12) {
+          document.cookie = "card=" + str;
+          str = '';
+           }
+        console.log('cookie-->', document.cookie);
+      })
+    }
+
+
+  </script>
+</body>
+
+</html>
